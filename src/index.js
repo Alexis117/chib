@@ -19,7 +19,7 @@ app.get('/user/:user_id', async function(req, res){
     })
     if (user === null)
         return res.status(400).send({error:"User Error", messsage:'User does not exist'})
-    const card = await models.Card.findOne({where:{userId:user.id}})
+    const card = await  models.Card.findOne({where:{userId:user.id}})
     if (user.userType == '1') {
         const beneficiaries = user.beneficiaries.map(beneficiary => beneficiary.name)
         const beneficiariesIds = user.beneficiaries.map(beneficiary => beneficiary.id)
@@ -189,7 +189,7 @@ app.post('/benefactors', async function(req, res){
 
 sequelize.sync({/*alter:true, force:true*/}).then(async () => {
 
-    app.listen({ port: 8000 }, () => {
+    app.listen({ port: process.envPORT || 8000 }, () => {
       console.log('Server listening on http://localhost:8000');
     });
 }).catch(err => console.log(err));
