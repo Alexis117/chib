@@ -4,6 +4,9 @@ import { sequelize, models } from './models/index.js';
 const app = express()
 app.use(express.json());
 
+app.get('/', function(req, res) {
+    return res.send('Hi, Welcome to my API')
+})
 //Get User Edpoint
 app.get('/user', async function(req, res){
     const users = await models.User.findAll({attributes: {
