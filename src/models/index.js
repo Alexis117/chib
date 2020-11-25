@@ -2,10 +2,9 @@ import Sequelize from 'sequelize';
 import DataTypes from 'sequelize';
 import { user, card } from './models.js'
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: '../db.sqlite'
-});
+const sequelize = new Sequelize(
+    process.env.DATABASE_URL
+);
 
 const models = {
     User: user(sequelize, DataTypes, Sequelize),
