@@ -189,7 +189,7 @@ app.post('/benefactors', async function(req, res){
 
 sequelize.sync({/*alter:true, force:true*/}).then(async () => {
 
-    app.listen({ port: process.envPORT || 8000 }, () => {
+    app.listen({ port: process.env.PORT || 8000 }, () => {
       console.log('Server listening on http://localhost:8000');
     });
 }).catch(err => console.log(err));
